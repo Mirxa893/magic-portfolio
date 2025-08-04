@@ -20,12 +20,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug) ? routeParams.slug.join('/') : routeParams.slug || '';
-
   const posts = getPosts(["src", "app", "blog", "posts"])
   let post = posts.find((post) => post.slug === slugPath);
-
   if (!post) return {};
-
   return Meta.generate({
     title: post.metadata.title,
     description: post.metadata.summary,
@@ -40,21 +37,20 @@ export default async function Blog({
 }: { params: Promise<{ slug: string | string[] }> }) {
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug) ? routeParams.slug.join('/') : routeParams.slug || '';
-
   let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slugPath);
-
+  
   if (!post) {
     notFound();
   }
-
+  
   const avatars =
     post.metadata.team?.map((person) => ({
       src: person.avatar,
     })) || [];
-
+    
   return (
     <Row fillWidth>
-      <Row maxWidth={12} hide="m"/>
+      <Row maxWidth={12} className="m-hide"/>
       <Row fillWidth horizontal="center">
         <Column as="section" maxWidth="xs" gap="l">
           <Schema
@@ -87,20 +83,20 @@ export default async function Blog({
           </Column>
           <ScrollToHash />
         </Column>
-    </Row>
-    <Column maxWidth={12} paddingLeft="40" fitHeight position="sticky" top="80" gap="16" hide="m">
-      <Row
-        gap="12"
-        paddingLeft="2"
-        vertical="center"
-        onBackground="neutral-medium"
-        textVariant="label-default-s"
-      >
-        <Icon name="document" size="xs" />
-        On this page
       </Row>
-      <HeadingNav fitHeight/>
-    </Column>
+      <Column maxWidth={12} paddingLeft="40" fitHeight position="sticky" top="80" gap="16" className="m-hide">
+        <Row
+          gap="12"
+          paddingLeft="2"
+          vertical="center"
+          onBackground="neutral-medium"
+          textVariant="label-default-s"
+        >
+          <Icon name="document" size="xs" />
+          On this page
+        </Row>
+        <HeadingNav fitHeight/>
+      </Column>
     </Row>
   );
 }
