@@ -138,11 +138,6 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
           maxWidth={24} 
           direction="column" 
           gap="8"
-          style={{
-            '@media (min-width: 768px)': {
-              flexDirection: 'row'
-            }
-          }}
         >
           <Input
             formNoValidate
