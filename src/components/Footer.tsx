@@ -4,7 +4,6 @@ import styles from "./Footer.module.scss";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-
   return (
     <Flex
       as="footer"
@@ -49,7 +48,7 @@ export const Footer = () => {
           )}
         </Flex>
       </Flex>
-      <Flex height="80" show="s" />
+      <div style={{ height: '80px' }} className={styles.spacer} />
     </Flex>
   );
 };
