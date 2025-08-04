@@ -211,7 +211,7 @@ export default function About() {
                   >
                     <Flex
                       fillWidth
-                      horizontal="space-between"
+                      horizontal="between"
                       vertical="end"
                       marginBottom="4"
                     >
